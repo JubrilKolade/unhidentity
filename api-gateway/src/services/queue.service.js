@@ -1,4 +1,4 @@
-const { redis } = require('../config/redis');
+import { redis } from '../config/redis.js';
 
 class QueueService {
   constructor() {
@@ -42,4 +42,4 @@ class QueueService {
   }
 }
 
-module.exports = new QueueService();
+export default new QueueService();

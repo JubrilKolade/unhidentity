@@ -1,4 +1,4 @@
-const { pool } = require('../config/database');
+import { pool } from '../config/database.js';
 
 const authenticateApiKey = async (req, res, next) => {
   try {
@@ -28,4 +28,4 @@ const authenticateApiKey = async (req, res, next) => {
   }
 };
 
-module.exports = { authenticateApiKey };
+export { authenticateApiKey };

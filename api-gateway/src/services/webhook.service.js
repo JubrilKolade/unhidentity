@@ -1,7 +1,7 @@
-const { pool } = require('../config/database');
-const axios = require('axios');
-const crypto = require('crypto');
-const logger = require('../utils/logger');
+import { pool } from '../config/database.js';
+import axios from 'axios';
+import crypto from 'crypto';
+import logger from '../utils/logger.js';
 
 class WebhookService {
   async deliverWebhook(verification, event = 'verification.completed') {
@@ -212,4 +212,4 @@ class WebhookService {
   }
 }
 
-module.exports = new WebhookService();
+export default new WebhookService();

@@ -1,6 +1,7 @@
-const webhookService = require('../services/webhook.service');
-const { pool } = require('../config/database');
-const logger = require('../utils/logger');
+import webhookService from '../services/webhook.service.js';
+import { pool } from '../config/database.js';
+import logger from '../utils/logger.js';
+import axios from 'axios';
 
 class WebhookController {
   async getWebhookHistory(req, res, next) {
@@ -86,7 +87,6 @@ class WebhookController {
 
       const signature = webhookService.generateSignature(payload, req.customer.api_secret);
 
-      const axios = require('axios');
       const response = await axios.post(req.customer.webhook_url, payload, {
         headers: {
           'Content-Type': 'application/json',
@@ -112,4 +112,4 @@ class WebhookController {
   }
 }
 
-module.exports = new WebhookController();
+export default new WebhookController();

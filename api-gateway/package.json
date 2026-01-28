@@ -2,7 +2,8 @@
   "name": "unhidentity-api-gateway",
   "version": "1.0.0",
   "description": "UnhIdentity KYC as a Service API Gateway",
-  "main": "src/server.js",
+  "type": "module",
+  "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",

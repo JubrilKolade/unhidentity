@@ -1,5 +1,5 @@
-const AWS = require('aws-sdk');
-const crypto = require('crypto');
+import AWS from 'aws-sdk';
+import crypto from 'crypto';
 
 const s3 = new AWS.S3({
   endpoint: process.env.S3_ENDPOINT || 'http://localhost:9000',
@@ -73,4 +73,4 @@ class StorageService {
   }
 }
 
-module.exports = new StorageService();
+export default new StorageService();

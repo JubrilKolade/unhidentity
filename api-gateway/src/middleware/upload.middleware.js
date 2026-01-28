@@ -1,5 +1,5 @@
-const multer = require('multer');
-const path = require('path');
+import multer from 'multer';
+import path from 'path';
 
 const storage = multer.memoryStorage();
 
@@ -30,4 +30,4 @@ const uploadDocuments = upload.fields([
   { name: 'selfie', maxCount: 1 }
 ]);
 
-module.exports = { uploadDocuments };
+export { uploadDocuments };

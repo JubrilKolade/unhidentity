@@ -1,7 +1,7 @@
-const { pool } = require('../config/database');
-const queueService = require('./queue.service');
-const storageService = require('../config/storage');
-const path = require('path');
+import { pool } from '../config/database.js';
+import queueService from './queue.service.js';
+import storageService from '../config/storage.js';
+import path from 'path';
 
 class VerificationService {
   async create(data) {
@@ -215,4 +215,4 @@ class VerificationService {
   }
 }
 
-module.exports = new VerificationService();
+export default new VerificationService();

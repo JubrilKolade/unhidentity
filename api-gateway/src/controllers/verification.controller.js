@@ -1,5 +1,5 @@
-const verificationService = require('../services/verification.service');
-const logger = require('../utils/logger');
+import verificationService from '../services/verification.service.js';
+import logger from '../utils/logger.js';
 
 class VerificationController {
   async createVerification(req, res, next) {
@@ -144,4 +144,4 @@ class VerificationController {
   }
 }
 
-module.exports = new VerificationController();
+export default new VerificationController();

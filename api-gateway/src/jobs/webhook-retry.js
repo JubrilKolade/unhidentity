@@ -1,5 +1,5 @@
-const webhookService = require('../services/webhook.service');
-const logger = require('../utils/logger');
+import webhookService from '../services/webhook.service.js';
+import logger from '../utils/logger.js';
 
 async function retryFailedWebhooks() {
   try {
@@ -17,4 +17,4 @@ setInterval(retryFailedWebhooks, 5 * 60 * 1000);
 // Run immediately on start
 retryFailedWebhooks();
 
-module.exports = retryFailedWebhooks;
+export default retryFailedWebhooks;

@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const verificationController = require('../controllers/verification.controller');
-const { authenticateApiKey } = require('../middleware/auth.middleware');
-const { uploadDocuments } = require('../middleware/upload.middleware');
+import verificationController from '../controllers/verification.controller.js';
+import { authenticateApiKey } from '../middleware/auth.middleware.js';
+import { uploadDocuments } from '../middleware/upload.middleware.js';
 
 router.use(authenticateApiKey);
 
@@ -13,4 +13,4 @@ router.post('/:id/submit', verificationController.submitVerification);
 router.get('/:id', verificationController.getVerification);
 router.get('/', verificationController.listVerifications);
 
-module.exports = router;
+export default router;

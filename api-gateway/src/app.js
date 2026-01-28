@@ -1,14 +1,14 @@
-require('dotenv').config();
-const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const rateLimit = require('express-rate-limit');
-const { errorHandler } = require('./middleware/errorHandler.middleware');
-const logger = require('./utils/logger');
+import 'dotenv/config';
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import rateLimit from 'express-rate-limit';
+import { errorHandler } from './middleware/errorHandler.middleware.js';
+import logger from './utils/logger.js';
 
-const verificationRoutes = require('./routes/verification.routes');
-const adminRoutes = require('./routes/admin.routes');
-const webhookRoutes = require('./routes/webhook.routes');
+import verificationRoutes from './routes/verification.routes.js';
+import adminRoutes from './routes/admin.routes.js';
+import webhookRoutes from './routes/webhook.routes.js';
 
 const app = express();
 
@@ -56,7 +56,7 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-require('./jobs/webhook-retry');
+import './jobs/webhook-retry.js';
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
@@ -82,4 +82,4 @@ process.on('SIGINT', () => {
   });
 });
 
-module.exports = app;
+export default app;
