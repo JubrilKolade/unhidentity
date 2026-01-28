@@ -4,8 +4,8 @@
   "description": "UnhIdentity KYC as a Service API Gateway",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
     "test": "jest --coverage"
   },
   "keywords": ["kyc", "verification", "identity"],
