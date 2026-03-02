@@ -11,6 +11,18 @@ const s3 = new AWS.S3({
 
 const BUCKET_NAME = process.env.S3_BUCKET || 'kyc-documents';
 
+function getEncryptionKey() {
+  const raw = process.env.ENCRYPTION_KEY;
+  if (!raw) {
+    throw new Error('ENCRYPTION_KEY is required (hex-encoded 32 bytes).');
+  }
+  const hex = raw.trim().toLowerCase();
+  if (!/^[0-9a-f]{64}$/.test(hex)) {
+    throw new Error('ENCRYPTION_KEY must be 64 hex characters (32 bytes).');
+  }
+  return Buffer.from(hex, 'hex');
+}
+
 class StorageService {
   async upload(key, buffer, contentType) {
     const encryptedBuffer = this.encrypt(buffer);
@@ -48,7 +60,7 @@ class StorageService {
 
   encrypt(buffer) {
     const algorithm = 'aes-256-gcm';
-    const key = Buffer.from(process.env.ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex'), 'hex').slice(0, 32);
+    const key = getEncryptionKey();
     const iv = crypto.randomBytes(16);
     
     const cipher = crypto.createCipheriv(algorithm, key, iv);
@@ -60,7 +72,7 @@ class StorageService {
 
   decrypt(buffer) {
     const algorithm = 'aes-256-gcm';
-    const key = Buffer.from(process.env.ENCRYPTION_KEY || crypto.randomBytes(32).toString('hex'), 'hex').slice(0, 32);
+    const key = getEncryptionKey();
     
     const iv = buffer.slice(0, 16);
     const authTag = buffer.slice(16, 32);
